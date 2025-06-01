@@ -7,9 +7,9 @@ Sistema completo de gerenciamento de emergências desenvolvido em .NET 9 com ASP
 ## 👥 Equipe
 
 * Membros da Equipe: 
-Afonso Correia Pereira - RM557863
-Adel Mouhaidly - RM557705
-Tiago Augusto Desiderato - RM558485
+* Afonso Correia Pereira - RM557863
+* Adel Mouhaidly - RM557705
+* Tiago Augusto Desiderato - RM558485
 * GitHub: \[[https://github.com/afonsocp/SafeDrop.NET)]
 
 ## 🏗️ Arquitetura do Sistema
