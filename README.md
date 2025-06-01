@@ -324,13 +324,7 @@ Content-Type: application/json
 * Diferentes níveis de urgência
 * Notificações por região
 
-**4. Gestão de Abrigos**
-
-* Cadastro de abrigos de emergência
-* Sistema de check-in/check-out
-* Controle de capacidade
-
-**5. Dashboard Administrativo**
+**4. Dashboard Administrativo**
 
 * Visualização de estatísticas
 * Monitoramento em tempo real
