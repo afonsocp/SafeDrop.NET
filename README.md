@@ -4,6 +4,11 @@
 
 Sistema completo de gerenciamento de emergências desenvolvido em .NET 9 com ASP.NET Core, Entity Framework e Razor Pages. A solução oferece uma API REST robusta para auxiliar pessoas em situações de extrema urgência, permitindo o cadastro de ocorrências, alertas, usuários e abrigos.
 
+## 🎥 Vídeos
+
+*Vídeo Desmontração do Projeto: https://www.youtube.com/watch?v=BqIK2Jfdc1M
+*Vídeo Pitch: (COLOCA AQUI)
+
 ## 👥 Equipe
 
 * Membros da Equipe: 
