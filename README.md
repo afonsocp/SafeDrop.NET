@@ -359,13 +359,3 @@ dotnet run --environment Development
 dotnet publish -c Release
 dotnet EmergencyManagementAPI.dll
 ```
-
-## 📝 Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch (git checkout -b feature/nova-funcionalidade)
-3. Commit (git commit -am 'Adiciona nova funcionalidade')
-4. Push (git push origin feature/nova-funcionalidade)
-5. Abra um Pull Request
-
-
