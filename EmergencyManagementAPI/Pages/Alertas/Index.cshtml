@@ -1,0 +1,68 @@
+@page
+@model EmergencyManagementAPI.Pages.Alertas.IndexModel
+
+@{
+    ViewData["Title"] = "Alertas";
+}
+
+<h1>Alertas</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Criar Novo Alerta</a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Nível de Urgência</th>
+            <th>Data de Emissão</th>
+            <th>Fonte</th>
+            <th>Ocorrência</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Alertas)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                <td>
+                    <span class="badge @(item.NivelUrgencia switch {
+                        "baixo" => "bg-success",
+                        "medio" => "bg-warning",
+                        "alto" => "bg-danger",
+                        "critico" => "bg-dark",
+                        _ => "bg-secondary"
+                    })">
+                        @item.NivelUrgencia.ToUpper()
+                    </span>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.DataEmissao)</td>
+                <td>@Html.DisplayFor(modelItem => item.Fonte)</td>
+                <td>
+                    @if (item.Ocorrencia != null)
+                    {
+                        <span title="@item.Ocorrencia.Descricao">Ocorrência #@item.IdOcorrencia</span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Nenhuma</span>
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdAlerta" class="btn btn-sm btn-outline-warning">Editar</a>
+                    <a asp-page="./Delete" asp-route-id="@item.IdAlerta" class="btn btn-sm btn-outline-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

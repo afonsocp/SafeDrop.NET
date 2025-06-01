@@ -1,0 +1,131 @@
+@page
+@model EmergencyManagementAPI.Pages.Ocorrencias.EditModel
+@{
+    ViewData["Title"] = "Editar Ocorrência";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-edit text-primary me-2"></i>Editar Ocorrência</h2>
+    <div>
+        <a asp-page="./Details" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-outline-info me-2">
+            <i class="fas fa-eye me-1"></i>Detalhes
+        </a>
+        <a asp-page="./Index" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Voltar
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    
+                    <input type="hidden" asp-for="Ocorrencia.IdOcorrencia" />
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Ocorrencia.IdTipo" class="form-label">Tipo de Ocorrência *</label>
+                            <select asp-for="Ocorrencia.IdTipo" asp-items="Model.TiposOcorrencia" class="form-select">
+                                <option value="">Selecione o tipo...</option>
+                            </select>
+                            <span asp-validation-for="Ocorrencia.IdTipo" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Ocorrencia.IdUsuario" class="form-label">Usuário Responsável *</label>
+                            <select asp-for="Ocorrencia.IdUsuario" asp-items="Model.Usuarios" class="form-select">
+                                <option value="">Selecione o usuário...</option>
+                            </select>
+                            <span asp-validation-for="Ocorrencia.IdUsuario" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Ocorrencia.Descricao" class="form-label">Descrição *</label>
+                        <textarea asp-for="Ocorrencia.Descricao" class="form-control" rows="4" placeholder="Descreva a ocorrência detalhadamente..."></textarea>
+                        <span asp-validation-for="Ocorrencia.Descricao" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Ocorrencia.Latitude" class="form-label">Latitude</label>
+                            <input asp-for="Ocorrencia.Latitude" class="form-control" placeholder="Ex: -23.5505" step="any" />
+                            <span asp-validation-for="Ocorrencia.Latitude" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Ocorrencia.Longitude" class="form-label">Longitude</label>
+                            <input asp-for="Ocorrencia.Longitude" class="form-control" placeholder="Ex: -46.6333" step="any" />
+                            <span asp-validation-for="Ocorrencia.Longitude" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Ocorrencia.DataOcorrencia" class="form-label">Data e Hora *</label>
+                            <input asp-for="Ocorrencia.DataOcorrencia" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="Ocorrencia.DataOcorrencia" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Ocorrencia.Status" class="form-label">Status *</label>
+                            <select asp-for="Ocorrencia.Status" class="form-select">
+                                <option value="Aberta">Aberta</option>
+                                <option value="Em Andamento">Em Andamento</option>
+                                <option value="Resolvida">Resolvida</option>
+                                <option value="Cancelada">Cancelada</option>
+                            </select>
+                            <span asp-validation-for="Ocorrencia.Status" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Ocorrencia.NivelRisco" class="form-label">Nível de Risco *</label>
+                            <select asp-for="Ocorrencia.NivelRisco" class="form-select">
+                                <option value="Baixo">Baixo</option>
+                                <option value="Médio">Médio</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Crítico">Crítico</option>
+                            </select>
+                            <span asp-validation-for="Ocorrencia.NivelRisco" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-page="./Details" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-info-circle me-1"></i>Informações</h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <h6>Atenção:</h6>
+                    <p class="mb-0">Alterações no status da ocorrência podem afetar alertas relacionados e notificações automáticas.</p>
+                </div>
+                
+                <div class="alert alert-info">
+                    <h6>ID da Ocorrência:</h6>
+                    <p class="mb-0">#@Model.Ocorrencia.IdOcorrencia</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

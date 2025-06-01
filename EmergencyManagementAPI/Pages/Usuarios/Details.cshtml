@@ -1,0 +1,203 @@
+@page
+@model EmergencyManagementAPI.Pages.Usuarios.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes do Usuário";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="text-primary mb-0">
+                        <i class="fas fa-user-circle me-2"></i>Detalhes do Usuário
+                    </h2>
+                    <small class="text-muted">Informações completas do usuário</small>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.Usuario.IdUsuario" class="btn btn-warning me-2">
+                        <i class="fas fa-edit me-1"></i>Editar
+                    </a>
+                    <a asp-page="./Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Informações Básicas -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Informações Básicas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Tipo:</strong></div>
+                        <div class="col-sm-8">
+                            <span class="badge bg-@(Model.Usuario.TipoUsuario == "cidadao" ? "primary" : Model.Usuario.TipoUsuario == "voluntario" ? "success" : "warning")">
+                                @(Model.Usuario.TipoUsuario == "cidadao" ? "Cidadão" : Model.Usuario.TipoUsuario == "voluntario" ? "Voluntário" : "Órgão Público")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Nome:</strong></div>
+                        <div class="col-sm-8">@Model.Usuario.Nome</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Email:</strong></div>
+                        <div class="col-sm-8">
+                            <a href="mailto:@Model.Usuario.Email" class="text-decoration-none">
+                                <i class="fas fa-envelope me-1"></i>@Model.Usuario.Email
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-4"><strong>Cadastrado em:</strong></div>
+                        <div class="col-sm-8">
+                            <i class="fas fa-calendar me-1"></i>@Model.Usuario.DataCadastro.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>Estatísticas
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-6 mb-3">
+                            <div class="border rounded p-3">
+                                <h3 class="text-primary mb-1">@Model.TotalOcorrencias</h3>
+                                <small class="text-muted">Ocorrências Reportadas</small>
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="border rounded p-3">
+                                <h3 class="text-success mb-1">@Model.OcorrenciasResolvidas</h3>
+                                <small class="text-muted">Resolvidas</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <h3 class="text-warning mb-1">@Model.OcorrenciasAndamento</h3>
+                                <small class="text-muted">Em Andamento</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-3">
+                                <h3 class="text-info mb-1">@Model.TotalCheckinsAbrigos</h3>
+                                <small class="text-muted">Check-ins em Abrigos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ocorrências Reportadas -->
+    @if (Model.OcorrenciasRecentes.Any())
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Ocorrências Recentes
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Descrição</th>
+                                        <th>Localização</th>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ocorrencia in Model.OcorrenciasRecentes)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <span class="badge bg-secondary">@ocorrencia.TipoOcorrencia.Nome</span>
+                                            </td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(ocorrencia.Descricao))
+                                                {
+                                                    @(ocorrencia.Descricao.Length > 50 ? ocorrencia.Descricao.Substring(0, 50) + "..." : ocorrencia.Descricao)
+                                                }
+                                                else
+                                                {
+                                                    <em class="text-muted">Sem descrição</em>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (ocorrencia.Latitude.HasValue && ocorrencia.Longitude.HasValue)
+                                                {
+                                                    <small>@ocorrencia.Latitude.Value.ToString("F6"), @ocorrencia.Longitude.Value.ToString("F6")</small>
+                                                }
+                                                else
+                                                {
+                                                    <em class="text-muted">Não informado</em>
+                                                }
+                                            </td>
+                                            <td>
+                                                <small>@ocorrencia.DataOcorrencia.ToString("dd/MM/yyyy HH:mm")</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge bg-@(ocorrencia.Status == "resolvido" ? "success" : "warning")">@ocorrencia.Status</span>
+                                            </td>
+                                            <td>
+                                                <a asp-page="/Ocorrencias/Details" asp-route-id="@ocorrencia.IdOcorrencia" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-page="/Ocorrencias/Edit" asp-route-id="@ocorrencia.IdOcorrencia" class="btn btn-sm btn-outline-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a asp-page="/Ocorrencias/Delete" asp-route-id="@ocorrencia.IdOcorrencia" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-3">
+                            <a asp-page="/Ocorrencias/Index" asp-route-usuarioId="@Model.Usuario.IdUsuario" class="btn btn-outline-primary">
+                                <i class="fas fa-list me-1"></i>Ver Todas as Ocorrências
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+@section Scripts {
+    <script>
+        // Adicionar funcionalidades JavaScript se necessário
+        $(document).ready(function() {
+            // Tooltip para badges
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+}

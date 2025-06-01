@@ -1,0 +1,178 @@
+@page
+@model EmergencyManagementAPI.Pages.Ocorrencias.DeleteModel
+@{
+    ViewData["Title"] = "Excluir Ocorrência";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-trash text-danger me-2"></i>Excluir Ocorrência</h2>
+    <a asp-page="./Index" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-1"></i>Voltar
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="alert alert-danger">
+            <h5><i class="fas fa-exclamation-triangle me-2"></i>Confirmação de Exclusão</h5>
+            <p class="mb-0">Tem certeza de que deseja excluir esta ocorrência? Esta ação não pode ser desfeita.</p>
+        </div>
+        
+        @if (Model.HasRelatedAlerts)
+        {
+            <div class="alert alert-warning">
+                <h6><i class="fas fa-bell me-2"></i>Atenção: Alertas Relacionados</h6>
+                <p class="mb-0">Esta ocorrência possui <strong>@Model.RelatedAlertsCount alerta(s)</strong> relacionado(s). 
+                Você deve excluir os alertas primeiro antes de excluir a ocorrência.</p>
+            </div>
+        }
+        
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@Model.Ocorrencia.TipoOcorrencia.Nome</h5>
+                <div>
+                    <span class="badge bg-@GetStatusColor(Model.Ocorrencia.Status) me-2">@Model.Ocorrencia.Status</span>
+                    <span class="badge bg-@GetRiskColor(Model.Ocorrencia.NivelRisco)">@Model.Ocorrencia.NivelRisco</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>ID:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        @Model.Ocorrencia.IdOcorrencia
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Descrição:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        @Model.Ocorrencia.Descricao
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Usuário Responsável:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        <i class="fas fa-user me-1"></i>@Model.Ocorrencia.Usuario.Nome
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Data/Hora:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        <i class="fas fa-clock me-1"></i>@Model.Ocorrencia.DataOcorrencia.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+                
+                @if (Model.Ocorrencia.Latitude.HasValue && Model.Ocorrencia.Longitude.HasValue)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Coordenadas:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            Lat: @Model.Ocorrencia.Latitude.Value.ToString("F6"), 
+                            Lng: @Model.Ocorrencia.Longitude.Value.ToString("F6")
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <form method="post">
+                <input type="hidden" asp-for="Ocorrencia.IdOcorrencia" />
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-page="./Details" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-secondary">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </a>
+                    
+                    @if (!Model.HasRelatedAlerts)
+                    {
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza de que deseja excluir esta ocorrência?')">
+                            <i class="fas fa-trash me-1"></i>Confirmar Exclusão
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-danger" disabled title="Exclua os alertas relacionados primeiro">
+                            <i class="fas fa-ban me-1"></i>Não é possível excluir
+                        </button>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-info-circle me-1"></i>Informações da Exclusão</h6>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <h6>Consequências:</h6>
+                    <ul class="mb-0">
+                        <li>A ocorrência será permanentemente removida</li>
+                        <li>Histórico será perdido</li>
+                        <li>Não será possível recuperar os dados</li>
+                    </ul>
+                </div>
+                
+                @if (Model.HasRelatedAlerts)
+                {
+                    <div class="alert alert-warning">
+                        <h6>Bloqueios:</h6>
+                        <ul class="mb-0">
+                            <li>@Model.RelatedAlertsCount alerta(s) relacionado(s)</li>
+                            <li>Exclua os alertas primeiro</li>
+                        </ul>
+                    </div>
+                }
+                
+                <div class="alert alert-info">
+                    <h6>Alternativas:</h6>
+                    <ul class="mb-0">
+                        <li>Alterar status para "Cancelada"</li>
+                        <li>Editar informações em vez de excluir</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "Aberta" => "warning",
+            "Em Andamento" => "info",
+            "Resolvida" => "success",
+            "Cancelada" => "secondary",
+            _ => "light"
+        };
+    }
+
+    private string GetRiskColor(string nivelRisco)
+    {
+        return nivelRisco switch
+        {
+            "Baixo" => "success",
+            "Médio" => "warning",
+            "Alto" => "danger",
+            "Crítico" => "dark",
+            _ => "light"
+        };
+    }
+}

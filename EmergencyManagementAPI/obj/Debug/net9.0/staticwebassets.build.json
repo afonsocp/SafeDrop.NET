@@ -1,0 +1,362 @@
+{
+  "Version": 1,
+  "Hash": "GRwo3dS1FRXnmBzAUbnX9TKoSsye3Us0UPY3QYw3fM4=",
+  "Source": "EmergencyManagementAPI",
+  "BasePath": "_content/EmergencyManagementAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EmergencyManagementAPI\\wwwroot",
+      "Source": "EmergencyManagementAPI",
+      "ContentRoot": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\",
+      "BasePath": "_content/EmergencyManagementAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\bwgw8cn9xb-dv1brpl8ox.gz",
+      "SourceId": "EmergencyManagementAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/EmergencyManagementAPI",
+      "RelativePath": "css/site#[.{fingerprint=dv1brpl8ox}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\css\\site.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "my8dflmm6w",
+      "Integrity": "Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\css\\site.css",
+      "SourceId": "EmergencyManagementAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\",
+      "BasePath": "_content/EmergencyManagementAPI",
+      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dv1brpl8ox",
+      "Integrity": "OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/site.css",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\bwgw8cn9xb-dv1brpl8ox.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001792114695"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "557"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css.gz",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\bwgw8cn9xb-dv1brpl8ox.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "557"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.dv1brpl8ox.css",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\bwgw8cn9xb-dv1brpl8ox.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001792114695"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "557"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dv1brpl8ox"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.dv1brpl8ox.css",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dv1brpl8ox"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OS3AIthPfAU4fnKnGSd0mbF0ivWXC2TlWfc7LZhr5/Q="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.dv1brpl8ox.css.gz",
+      "AssetFile": "C:\\Users\\Afonso\\Desktop\\projeto c#\\EmergencyManagementAPI\\obj\\Debug\\net9.0\\compressed\\bwgw8cn9xb-dv1brpl8ox.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "557"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 18:36:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dv1brpl8ox"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ys673enSp1C8ZX/37zRyaDCVTE7fJ8JMZ+gdTD8lGIU="
+        }
+      ]
+    }
+  ]
+}

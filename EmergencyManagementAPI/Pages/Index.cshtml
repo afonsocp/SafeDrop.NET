@@ -1,0 +1,177 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- Cards de Estatísticas -->
+<div class="row mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Usuários Cadastrados</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.TotalUsuarios</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Ocorrências Abertas</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.OcorrenciasAbertas</div>
+                        <small class="text-muted">Total: @Model.TotalOcorrencias</small>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Alertas Críticos</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.AlertasCriticos</div>
+                        <small class="text-muted">Total: @Model.TotalAlertas</small>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-bell fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Conteúdo Principal -->
+<div class="row">
+    <!-- Últimas Ocorrências -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Últimas Ocorrências</h6>
+                <a href="/Ocorrencias" class="btn btn-sm btn-primary">Ver Todas</a>
+            </div>
+            <div class="card-body">
+                @if (Model.UltimasOcorrencias.Any())
+                {
+                    @foreach (var ocorrencia in Model.UltimasOcorrencias)
+                    {
+                        <div class="d-flex align-items-center border-bottom py-2">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">@ocorrencia.Descricao</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-tag"></i> @ocorrencia.Tipo |
+                                    <i class="fas fa-user"></i> @ocorrencia.Usuario |
+                                    <i class="fas fa-clock"></i> @ocorrencia.Data.ToString("dd/MM/yyyy HH:mm")
+                                </small>
+                            </div>
+                            <div>
+                                <span class="badge bg-@(ocorrencia.Status == "aberta" ? "warning" : "success")">@ocorrencia.Status</span>
+                                <span class="badge bg-@(ocorrencia.NivelRisco == "alto" ? "danger" : ocorrencia.NivelRisco == "medio" ? "warning" : "secondary")">@ocorrencia.NivelRisco</span>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center">Nenhuma ocorrência registrada.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Alertas Recentes -->
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Alertas Recentes</h6>
+                <a href="/Alertas" class="btn btn-sm btn-primary">Ver Todos</a>
+            </div>
+            <div class="card-body">
+                @if (Model.AlertasRecentes.Any())
+                {
+                    @foreach (var alerta in Model.AlertasRecentes)
+                    {
+                        <div class="d-flex align-items-center border-bottom py-2">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">@alerta.Titulo</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-source"></i> @alerta.Fonte |
+                                    <i class="fas fa-clock"></i> @alerta.DataEmissao.ToString("dd/MM/yyyy HH:mm")
+                                </small>
+                            </div>
+                            <div>
+                                <span class="badge bg-@(alerta.NivelUrgencia == "critico" ? "danger" : alerta.NivelUrgencia == "alto" ? "warning" : alerta.NivelUrgencia == "medio" ? "info" : "secondary")">@alerta.NivelUrgencia</span>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted text-center">Nenhum alerta emitido.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ações Rápidas -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Ações Rápidas</h6>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 mb-3">
+                        <a href="/Ocorrencias/Create" class="btn btn-outline-warning btn-lg w-100">
+                            <i class="fas fa-plus-circle fa-2x d-block mb-2"></i>
+                            Nova Ocorrência
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="/Alertas/Create" class="btn btn-outline-danger btn-lg w-100">
+                            <i class="fas fa-bell fa-2x d-block mb-2"></i>
+                            Novo Alerta
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="/Usuarios/Create" class="btn btn-outline-primary btn-lg w-100">
+                            <i class="fas fa-user-plus fa-2x d-block mb-2"></i>
+                            Novo Usuário
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Auto-refresh a cada 30 segundos
+        setInterval(function() {
+            location.reload();
+        }, 30000);
+
+        // Destacar navegação ativa
+        $(document).ready(function() {
+            $('.nav-link[href="/"]').addClass('active');
+        });
+    </script>
+}

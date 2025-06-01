@@ -1,0 +1,87 @@
+@page
+@model EmergencyManagementAPI.Pages.Usuarios.CreateModel
+@{
+    ViewData["Title"] = "Novo Usuário";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-user-plus"></i> Cadastrar Novo Usuário</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.Nome" class="form-label">Nome Completo *</label>
+                            <input asp-for="Usuario.Nome" class="form-control" placeholder="Digite o nome completo" />
+                            <span asp-validation-for="Usuario.Nome" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.Email" class="form-label">Email *</label>
+                            <input asp-for="Usuario.Email" class="form-control" type="email" placeholder="usuario@email.com" />
+                            <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.TipoUsuario" class="form-label">Tipo de Usuário *</label>
+                            <select asp-for="Usuario.TipoUsuario" class="form-select">
+                                <option value="">Selecione o tipo</option>
+                                <option value="cidadao">Cidadão</option>
+                                <option value="voluntario">Voluntário</option>
+                                <option value="orgaopublico">Órgão Público</option>
+                            </select>
+                            <span asp-validation-for="Usuario.TipoUsuario" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.Senha" class="form-label">Senha *</label>
+                            <input asp-for="Usuario.Senha" class="form-control" type="password" placeholder="Digite a senha" />
+                            <span asp-validation-for="Usuario.Senha" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-page="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Salvar Usuário
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> Informações</h6>
+            </div>
+            <div class="card-body">
+                <h6>Tipos de Usuário:</h6>
+                <ul class="list-unstyled">
+                    <li><span class="badge bg-secondary">Cidadão</span> - Usuário comum do sistema</li>
+                    <li><span class="badge bg-info">Voluntário</span> - Pessoa que oferece ajuda</li>
+                    <li><span class="badge bg-warning">Orgão Público</span> - Orgão Público</li>
+                </ul>
+                <hr>
+                <small class="text-muted">
+                    <i class="fas fa-asterisk text-danger"></i> Campos obrigatórios
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $('.nav-link[href="/Usuarios"]').addClass('active');
+    </script>
+}

@@ -1,0 +1,114 @@
+@page
+@model EmergencyManagementAPI.Pages.Usuarios.IndexModel
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Gerenciar Usuários</h2>
+    <a asp-page="Create" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Novo Usuário
+    </a>
+</div>
+
+<!-- Filtros -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-6">
+                <label for="searchTerm" class="form-label">Buscar</label>
+                <input type="text" class="form-control" id="searchTerm" name="searchTerm" 
+                       value="@Model.SearchTerm" placeholder="Nome e email">
+            </div>
+            <div class="col-md-4">
+                <label for="filterType" class="form-label">Tipo de Usuário</label>
+                <select class="form-select" id="filterType" name="filterType">
+                    <option value="">Todos os tipos</option>
+                    <option value="cidadao" selected="@(Model.FilterType == "cidadao")">Cidadão</option>
+                    <option value="voluntario" selected="@(Model.FilterType == "voluntario")">Voluntário</option>
+                    <option value="funcionario" selected="@(Model.FilterType == "funcionario")">Órgão Público</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-outline-primary me-2">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <a href="/Usuarios" class="btn btn-outline-secondary">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Usuários -->
+<div class="card">
+    <div class="card-body">
+        @if (Model.Usuarios.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Data Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usuario in Model.Usuarios)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@usuario.Nome</strong>
+                                    @if (!string.IsNullOrEmpty(usuario.Endereco))
+                                    {
+                                        <br><small class="text-muted"><i class="fas fa-map-marker-alt"></i> @usuario.Endereco</small>
+                                    }
+                                </td>
+                                <td>@usuario.Email</td>
+                                <td>
+                                    <span class="badge bg-@(usuario.Tipo == "administrador" ? "danger" : usuario.Tipo == "funcionario" ? "warning" : usuario.Tipo == "voluntario" ? "info" : "secondary")">
+                                        @usuario.Tipo.ToUpper()
+                                    </span>
+                                </td>
+                                <td>@usuario.DataCadastro.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-page="./Edit" asp-route-id="@usuario.IdUsuario" class="btn btn-sm btn-outline-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-page="./Delete" asp-route-id="@usuario.IdUsuario" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">Nenhum usuário encontrado</h5>
+                <p class="text-muted">@(string.IsNullOrEmpty(Model.SearchTerm) ? "Não há usuários cadastrados." : "Tente ajustar os filtros de busca.")</p>
+                <a asp-page="Create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Cadastrar Primeiro Usuário
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.nav-link[href="/Usuarios"]').addClass('active');
+        });
+    </script>
+}

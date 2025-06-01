@@ -1,0 +1,179 @@
+@page
+@model EmergencyManagementAPI.Pages.Ocorrencias.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes da Ocorrência";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-eye text-info me-2"></i>Detalhes da Ocorrência</h2>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-primary me-2">
+            <i class="fas fa-edit me-1"></i>Editar
+        </a>
+        <a asp-page="./Index" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Voltar
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@Model.Ocorrencia.TipoOcorrencia.Nome</h5>
+                <div>
+                    <span class="badge bg-@GetStatusColor(Model.Ocorrencia.Status) me-2">@Model.Ocorrencia.Status</span>
+                    <span class="badge bg-@GetRiskColor(Model.Ocorrencia.NivelRisco)">@Model.Ocorrencia.NivelRisco</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>ID:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        @Model.Ocorrencia.IdOcorrencia
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Descrição:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        @Model.Ocorrencia.Descricao
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Usuário Responsável:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        <i class="fas fa-user me-1"></i>@Model.Ocorrencia.Usuario.Nome
+                        <br><small class="text-muted">@Model.Ocorrencia.Usuario.Email</small>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <strong>Data/Hora:</strong>
+                    </div>
+                    <div class="col-sm-9">
+                        <i class="fas fa-clock me-1"></i>@Model.Ocorrencia.DataOcorrencia.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+                
+                @if (Model.Ocorrencia.Latitude.HasValue && Model.Ocorrencia.Longitude.HasValue)
+                {
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
+                            <strong>Coordenadas:</strong>
+                        </div>
+                        <div class="col-sm-9">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            Lat: @Model.Ocorrencia.Latitude.Value.ToString("F6"), 
+                            Lng: @Model.Ocorrencia.Longitude.Value.ToString("F6")
+                            <br>
+                            <a href="https://www.google.com/maps?q=@Model.Ocorrencia.Latitude.Value.ToString("F6"),@Model.Ocorrencia.Longitude.Value.ToString("F6")" 
+                               target="_blank" class="btn btn-sm btn-outline-primary mt-1">
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        @if (Model.Ocorrencia.Alertas.Any())
+        {
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-bell me-1"></i>Alertas Relacionados (@Model.Ocorrencia.Alertas.Count)</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach (var alerta in Model.Ocorrencia.Alertas)
+                        {
+                            <div class="col-md-6 mb-2">
+                                <div class="border rounded p-2">
+                                    <strong>@alerta.TipoAlerta</strong>
+                                    <br><small class="text-muted">@alerta.DataHora.ToString("dd/MM/yyyy HH:mm")</small>
+                                    <br><span class="text-muted">@alerta.Mensagem</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-cogs me-1"></i>Ações</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-page="./Edit" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-primary">
+                        <i class="fas fa-edit me-1"></i>Editar Ocorrência
+                    </a>      
+                    <a asp-page="./Delete" asp-route-id="@Model.Ocorrencia.IdOcorrencia" class="btn btn-outline-danger">
+                        <i class="fas fa-trash me-1"></i>Excluir
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-info-circle me-1"></i>Informações</h6>
+            </div>
+            <div class="card-body">
+                <small class="text-muted">
+                    <strong>Tipo:</strong> @Model.Ocorrencia.TipoOcorrencia.Nome<br>
+                    <strong>Criado em:</strong> @Model.Ocorrencia.DataOcorrencia.ToString("dd/MM/yyyy")<br>
+                    <strong>Status:</strong> @Model.Ocorrencia.Status<br>
+                    <strong>Risco:</strong> @Model.Ocorrencia.NivelRisco
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    private string GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "Aberta" => "warning",
+            "Em Andamento" => "info",
+            "Resolvida" => "success",
+            "Cancelada" => "secondary",
+            _ => "light"
+        };
+    }
+
+    private string GetRiskColor(string nivelRisco)
+    {
+        return nivelRisco switch
+        {
+            "Baixo" => "success",
+            "Médio" => "warning",
+            "Alto" => "danger",
+            "Crítico" => "dark",
+            _ => "light"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        function updateStatus(newStatus) {
+            if (confirm(`Tem certeza que deseja alterar o status para '${newStatus}'?`)) {
+                // Implementar chamada AJAX para atualizar status
+                window.location.href = `./Edit/@Model.Ocorrencia.IdOcorrencia?status=${newStatus}`;
+            }
+        }
+    </script>
+}

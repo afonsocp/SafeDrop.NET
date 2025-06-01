@@ -1,0 +1,82 @@
+@page
+@model EmergencyManagementAPI.Pages.Usuarios.EditModel
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-user-edit"></i> Editar Usuário</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <input type="hidden" asp-for="Usuario.IdUsuario" />
+                    <input type="hidden" asp-for="Usuario.DataCadastro" />
+                    <input type="hidden" asp-for="Usuario.Senha" />
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.Nome" class="form-label">Nome Completo *</label>
+                            <input asp-for="Usuario.Nome" class="form-control" />
+                            <span asp-validation-for="Usuario.Nome" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.Email" class="form-label">Email *</label>
+                            <input asp-for="Usuario.Email" class="form-control" type="email" />
+                            <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Usuario.TipoUsuario" class="form-label">Tipo de Usuário *</label>
+                            <select asp-for="Usuario.TipoUsuario" class="form-select">
+                                <option value="cidadao">Cidadão</option>
+                                <option value="voluntario">Voluntário</option>
+                                <option value="funcionario">Órgão Público</option>
+                            </select>
+                            <span asp-validation-for="Usuario.TipoUsuario" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-save"></i> Atualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-info-circle"></i> Informações do Cadastro</h6>
+            </div>
+            <div class="card-body">
+                <p><strong>ID:</strong> @Model.Usuario.IdUsuario</p>
+                <p><strong>Cadastrado em:</strong> @Model.Usuario.DataCadastro.ToString("dd/MM/yyyy HH:mm")</p>
+                <hr>
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Atenção:</strong> Alterações no tipo de usuário podem afetar as permissões de acesso.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            $('.nav-link[href="/Usuarios"]').addClass('active')
+        });
+    </script>
+}

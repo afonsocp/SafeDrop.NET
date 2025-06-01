@@ -1,0 +1,66 @@
+@page
+@model EmergencyManagementAPI.Pages.Alertas.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes do Alerta";
+}
+
+<h1>Detalhes do Alerta</h1>
+
+<div>
+    <h4>Alerta</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Alerta.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alerta.Titulo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Alerta.Mensagem)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alerta.Mensagem)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Alerta.NivelUrgencia)
+        </dt>
+        <dd class="col-sm-10">
+            <span class="badge @(Model.Alerta.NivelUrgencia switch {
+                "baixo" => "bg-success",
+                "medio" => "bg-warning",
+                "alto" => "bg-danger",
+                "critico" => "bg-dark",
+                _ => "bg-secondary"
+            })">
+                @Model.Alerta.NivelUrgencia.ToUpper()
+            </span>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Alerta.DataEmissao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alerta.DataEmissao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Alerta.Fonte)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alerta.Fonte)
+        </dd>
+        @if (Model.Alerta.Ocorrencia != null)
+        {
+            <dt class="col-sm-2">
+                Ocorrência
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Alerta.Ocorrencia.Descricao
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Alerta.IdAlerta" class="btn btn-primary">Editar</a>
+    <a asp-page="./Index" class="btn btn-secondary">Voltar à Lista</a>
+</div>

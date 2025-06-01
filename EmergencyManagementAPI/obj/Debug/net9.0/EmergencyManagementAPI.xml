@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EmergencyManagementAPI</name>
+    </assembly>
+    <members>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.GetAbrigos">
+            <summary>
+            Obtém todos os abrigos com informações de ocupação
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.GetAbrigo(System.Int32)">
+            <summary>
+            Obtém um abrigo específico por ID
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.CreateAbrigo(EmergencyManagementAPI.DTOs.AbrigoCreateDto)">
+            <summary>
+            Cria um novo abrigo
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.UpdateAbrigo(System.Int32,EmergencyManagementAPI.DTOs.AbrigoUpdateDto)">
+            <summary>
+            Atualiza um abrigo existente
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.GetAbrigosPorStatus(System.String)">
+            <summary>
+            Obtém abrigos por status
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AbrigosController.DeleteAbrigo(System.Int32)">
+            <summary>
+            Exclui um abrigo (apenas se não houver pessoas abrigadas)
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AlertasController.GetAlertas">
+            <summary>
+            Obtém todos os alertas com informações da ocorrência relacionada
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AlertasController.GetAlerta(System.Int32)">
+            <summary>
+            Obtém um alerta específico por ID
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AlertasController.CreateAlerta(EmergencyManagementAPI.DTOs.AlertaCreateDto)">
+            <summary>
+            Cria um novo alerta
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AlertasController.GetAlertasPorNivel(System.String)">
+            <summary>
+            Obtém alertas por nível de urgência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.AlertasController.DeleteAlerta(System.Int32)">
+            <summary>
+            Exclui um alerta
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.CheckinsAbrigosController.CheckIn(System.Int32,System.Int32)">
+            <summary>
+            Realiza check-in de uma pessoa em um abrigo
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.CheckinsAbrigosController.CheckOut(System.Int32,System.Int32)">
+            <summary>
+            Realiza check-out de uma pessoa de um abrigo
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.CheckinsAbrigosController.GetHistoricoAbrigo(System.Int32)">
+            <summary>
+            Obtém histórico de check-ins de um abrigo
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.CheckinsAbrigosController.GetPessoasAbrigadas">
+            <summary>
+            Obtém pessoas atualmente abrigadas
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.OcorrenciasController.GetOcorrencias">
+            <summary>
+            Obtém todas as ocorrências com dados relacionados
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.OcorrenciasController.GetOcorrencia(System.Int32)">
+            <summary>
+            Obtém uma ocorrência específica
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.OcorrenciasController.CreateOcorrencia(EmergencyManagementAPI.DTOs.OcorrenciaCreateDto)">
+            <summary>
+            Cria uma nova ocorrência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.OcorrenciasController.UpdateStatus(System.Int32,System.String)">
+            <summary>
+            Atualiza o status de uma ocorrência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.OcorrenciasController.GetOcorrenciasPorRisco(System.String)">
+            <summary>
+            Obtém ocorrências por nível de risco
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.TiposOcorrenciaController.GetTiposOcorrencia">
+            <summary>
+            Obtém todos os tipos de ocorrência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.TiposOcorrenciaController.GetTipoOcorrencia(System.Int32)">
+            <summary>
+            Obtém um tipo de ocorrência específico
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.TiposOcorrenciaController.CreateTipoOcorrencia(EmergencyManagementAPI.Models.TipoOcorrencia)">
+            <summary>
+            Cria um novo tipo de ocorrência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.TiposOcorrenciaController.UpdateTipoOcorrencia(System.Int32,EmergencyManagementAPI.Models.TipoOcorrencia)">
+            <summary>
+            Atualiza um tipo de ocorrência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.TiposOcorrenciaController.DeleteTipoOcorrencia(System.Int32)">
+            <summary>
+            Remove um tipo de ocorrência
+            </summary>
+        </member>
+        <member name="T:EmergencyManagementAPI.Controllers.UsuariosController">
+            <summary>
+            Controller para gerenciamento de usuários do sistema de emergência
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.GetUsuarios">
+            <summary>
+            Obtém todos os usuários cadastrados no sistema
+            </summary>
+            <returns>Lista de usuários</returns>
+            <response code="200">Retorna a lista de usuários</response>
+            <response code="500">Erro interno do servidor</response>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.GetUsuario(System.Int32)">
+            <summary>
+            Obtém um usuário específico por ID
+            </summary>
+            <param name="id">ID único do usuário</param>
+            <returns>Dados do usuário encontrado</returns>
+            <response code="200">Retorna o usuário encontrado</response>
+            <response code="404">Usuário não encontrado</response>
+            <response code="500">Erro interno do servidor</response>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.PostUsuario(EmergencyManagementAPI.DTOs.UsuarioCreateDto)">
+            <summary>
+            Cria um novo usuário no sistema
+            </summary>
+            <param name="usuarioCreateDto">Dados do usuário a ser criado</param>
+            <returns>Usuário criado</returns>
+            <response code="201">Usuário criado com sucesso</response>
+            <response code="400">Dados inválidos</response>
+            <response code="500">Erro interno do servidor</response>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.UpdateUsuario(System.Int32,EmergencyManagementAPI.DTOs.UsuarioUpdateDto)">
+            <summary>
+            Atualiza um usuário
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.DeleteUsuario(System.Int32)">
+            <summary>
+            Remove um usuário
+            </summary>
+        </member>
+        <member name="M:EmergencyManagementAPI.Controllers.UsuariosController.GetUsuariosPorTipo(System.String)">
+            <summary>
+            Obtém usuários por tipo
+            </summary>
+        </member>
+        <member name="T:EmergencyManagementAPI.Migrations.InitialSqlite">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.InitialSqlite.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.InitialSqlite.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.InitialSqlite.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EmergencyManagementAPI.Migrations.UpdateDescricaoRequired">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.UpdateDescricaoRequired.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.UpdateDescricaoRequired.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EmergencyManagementAPI.Migrations.UpdateDescricaoRequired.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

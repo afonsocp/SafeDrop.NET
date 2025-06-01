@@ -1,0 +1,63 @@
+@page
+@model EmergencyManagementAPI.Pages.Alertas.CreateModel
+
+@{
+    ViewData["Title"] = "Criar Alerta";
+}
+
+<h1>Criar Alerta</h1>
+
+<h4>Novo Alerta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Alerta.Titulo" class="control-label">Título</label>
+                <input asp-for="Alerta.Titulo" class="form-control" maxlength="100" required />
+                <span asp-validation-for="Alerta.Titulo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Alerta.Mensagem" class="control-label">Mensagem</label>
+                <textarea asp-for="Alerta.Mensagem" class="form-control" rows="4" maxlength="1000" required></textarea>
+                <span asp-validation-for="Alerta.Mensagem" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Alerta.NivelUrgencia" class="control-label">Nível de Urgência</label>
+                <select asp-for="Alerta.NivelUrgencia" class="form-control" required>
+                    <option value="baixo">Baixo</option>
+                    <option value="medio">Médio</option>
+                    <option value="alto">Alto</option>
+                </select>
+                <span asp-validation-for="Alerta.NivelUrgencia" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Alerta.IdOcorrencia" class="control-label">Ocorrência (Opcional)</label>
+                <select asp-for="Alerta.IdOcorrencia" class="form-control" asp-items="Model.Ocorrencias">
+                    <option value="0">-- Selecione uma ocorrência (opcional) --</option>
+                </select>
+                <span asp-validation-for="Alerta.IdOcorrencia" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Alerta.Fonte" class="control-label">Fonte</label>
+                <input asp-for="Alerta.Fonte" class="form-control" maxlength="100" />
+                <span asp-validation-for="Alerta.Fonte" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
