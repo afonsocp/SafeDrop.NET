@@ -200,8 +200,8 @@ dotnet run
 
 Acesse a aplicação:
 
-* Interface Web: [https://localhost:7000](https://localhost:7000)
-* API Swagger: [https://localhost:7000/swagger](https://localhost:7000/swagger)
+* Interface Web: [http://localhost:5229](http://localhost:5229)
+* API Swagger: [http://localhost:5229/swagger/index.html](http://localhost:5229/swagger/index.html)
 
 ## 📖 Documentação da API
 
