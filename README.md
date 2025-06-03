@@ -7,7 +7,7 @@ Sistema completo de gerenciamento de emergências desenvolvido em .NET 9 com ASP
 ## 🎥 Vídeos
 
 * Vídeo Desmontração do Projeto: https://www.youtube.com/watch?v=BqIK2Jfdc1M
-* Vídeo Pitch: (COLOCA AQUI)
+* Vídeo Pitch: https://youtu.be/_b8kgfBJzeU
 
 ## 👥 Equipe
 
